@@ -26,7 +26,6 @@ public class AttackHitBox : MonoBehaviour
         {
 
             Vector2 pushDir = (collision.transform.position - player.position).normalized;
-            Debug.Log(pushDir);
             collision.GetComponent<Enemy>()?.TakeDamage(damageAmount);
             //collision.GetComponent<Enemy>()?.ApplyPushBack(pushDir, 10f);
         }

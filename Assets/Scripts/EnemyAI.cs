@@ -3,26 +3,43 @@ using UnityEngine;
 
 public class EnemyAI : MonoBehaviour
 {
+    // state
     enum State { Patrol, Follow }
     private State currentState = State.Patrol;
 
+    [Header("States")]
     [SerializeField] private Transform[] patrolPoints;
     [SerializeField] private float patrolSpeed;
     [SerializeField] private float reachPPointDistace = 0.3f;
     [SerializeField] private float reachPlayerDistace = 1f;
-    [SerializeField] private float stateChangeDistance = 3f
-    ;
+    [SerializeField] private float infectDistance = 2f;
+    [SerializeField] private float stateChangeDistance = 3f;
 
-    Rigidbody2D rb;
+    [Header("Attack")]
+    [SerializeField] float damageCooldown = 1f;
+    float lastDamageTime = 1f;
+    [SerializeField] float damageAmount = 10f;
+
+    [Header("Infect")]
+    [SerializeField] float infectionCooldown = 0.1f;
+    float lastInfectTime = -Mathf.Infinity;
+    [SerializeField] float infectAmount = .1f;
 
     private int currentPatrolIndex = 0;
-
     private Transform player;
+
+
+    // refs
+    Rigidbody2D rb;
+    PlayerHealth playerHealth;
+
+
 
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
         rb = GetComponent<Rigidbody2D>();
+        playerHealth = FindAnyObjectByType<PlayerHealth>();
     }
 
 
@@ -65,7 +82,7 @@ public class EnemyAI : MonoBehaviour
     }
     private void HandleFollow()
     {
-        
+
         // get direction to player
         Vector2 direction = (player.position - transform.position).normalized;
         // move to player
@@ -75,6 +92,8 @@ public class EnemyAI : MonoBehaviour
         if (Vector2.Distance(transform.position, player.position) <= reachPlayerDistace)
         {
             rb.linearVelocity = Vector2.zero;
+            CheckDamageCoolown();
+
         }
 
 
@@ -83,9 +102,41 @@ public class EnemyAI : MonoBehaviour
         if (distanceToPlayer >= stateChangeDistance)
         {
             currentState = State.Patrol;
+
         }
 
+        if (distanceToPlayer < infectDistance)
+        {
+            InfectPlayer();
+        }
+    }
+
+    public void CheckDamageCoolown()
+    {
+        rb.linearVelocity = Vector2.zero;
+        // check, if damageColdown-time has passed
+        if (Time.time - lastDamageTime >= damageCooldown)
+        {
+            AttackPlayer();
+            lastDamageTime = Time.time;
+        }
+    }
+
+    public void AttackPlayer()
+    {
+        playerHealth.TakeDamage(damageAmount);
+    }
+
+
+
+    public void InfectPlayer()
+    {
+        if (Time.time - lastInfectTime >= infectionCooldown)
+        {
+            playerHealth.IncreaseInfection(infectAmount);
+        }
         
+
     }
     
 

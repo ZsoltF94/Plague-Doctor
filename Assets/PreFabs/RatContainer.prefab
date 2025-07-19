@@ -395,7 +395,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8151429548644286904}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -483,4 +483,9 @@ MonoBehaviour:
   patrolSpeed: 1
   reachPPointDistace: 0.3
   reachPlayerDistace: 0.75
+  infectDistance: 2
   stateChangeDistance: 5
+  damageCooldown: 1
+  damageAmount: 10
+  infectionCooldown: 0.1
+  infectAmount: 0.005

@@ -6,6 +6,7 @@ public class PlayerCombat : MonoBehaviour
 {
     InputSystem_Actions inputActions;
     AttackHitBox attackHitBoxScript;
+    Animator animator;
 
 
     [SerializeField] private GameObject attackHitBox;
@@ -21,7 +22,13 @@ public class PlayerCombat : MonoBehaviour
     {
         inputActions = new InputSystem_Actions();
         attackHitBoxScript = attackHitBox.GetComponent<AttackHitBox>();
+        animator = GetComponent<Animator>();
 
+    }
+
+    void Update()
+    {
+        UpdateAnimation();
     }
 
 
@@ -51,14 +58,14 @@ public class PlayerCombat : MonoBehaviour
         Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
         mouseWorldPosition.z = 0;
         Vector2 direction = (mouseWorldPosition - transform.position).normalized;
-        attackHitBox.transform.localPosition = direction * 2.5f;
+        attackHitBox.transform.localPosition = direction * 0.7f;
 
         // set hitbox bigger
-        attackHitBox.transform.localScale *= attacksize; 
+        attackHitBox.transform.localScale *= attacksize;
 
         // set hitbox active for attackduration
         attackHitBox.SetActive(true);
-        
+
         yield return new WaitForSeconds(attackduration);
         attackHitBox.SetActive(false);
 
@@ -66,6 +73,19 @@ public class PlayerCombat : MonoBehaviour
         yield return new WaitForSeconds(attackCooldown - attackduration);
         canAttack = true;
         attackHitBox.transform.localScale /= attacksize;
+    }
+
+
+    // animation
+    
+    public void UpdateAnimation()
+    {
+        // get mouse posiotion
+        Vector3 mouseWorldPosition = (Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue())) - transform.position;
+        mouseWorldPosition.z = 0;
+
+        animator.SetFloat("MoveX", mouseWorldPosition.x);
+        animator.SetFloat("MoveY", mouseWorldPosition.y);
     }
 
 

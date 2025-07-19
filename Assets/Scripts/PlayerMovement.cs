@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
     public Vector2 lastMoveDirection { get; private set; } = Vector2.down;
     Rigidbody2D rb;
 
+
     [SerializeField] float maxSpeed = 5f;
     [SerializeField] float acceleration = 5f;
     [SerializeField] float damping = 5f;
@@ -21,6 +22,7 @@ public class PlayerMovement : MonoBehaviour
     {
         inputActions = new InputSystem_Actions();
         rb = GetComponent<Rigidbody2D>();
+
     }
 
 
@@ -61,5 +63,7 @@ public class PlayerMovement : MonoBehaviour
         {
             lastMoveDirection = moveInput.normalized;
         }
+
     }
+
 }
