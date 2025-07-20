@@ -5,30 +5,21 @@ public class PlayerHealth : MonoBehaviour
 {
     [Header("Health")]
     [SerializeField] Slider healthbar;
-    [SerializeField] float maxHealth = 100f;
+    [SerializeField] float maxHealth = 500f;
     [SerializeField] float healthRegainAmount = 0.5f;
     [SerializeField] float healthRegainCooldown = 0.01f;
+    [SerializeField] float currentHealth;
     float lastRegainTime;
 
     [Header("Ibfection")]
     [SerializeField] Slider pestBar;
     [SerializeField] float maxInfection = 100f;
-    
-
-    // attrs
+    [SerializeField] float currentInfection;
 
 
 
-
-
-
-    float currentHealth;
-    float currentInfection;
     bool isDead;
 
-
-
-    // refs
 
 
 
@@ -109,7 +100,6 @@ public class PlayerHealth : MonoBehaviour
     {
         if (pestBar != null)
         {
-            Debug.Log("update pest bar");
             pestBar.value = currentInfection / maxInfection;
         }
     }
@@ -119,5 +109,24 @@ public class PlayerHealth : MonoBehaviour
     {
         isDead = true;
         Debug.Log("You Died.");
+    }
+
+    // getter
+    public float GetCurrentHealth()
+    {
+        return currentHealth;
+    }
+
+    public float GetCurrentInfection()
+    {
+        return currentInfection;
+    }
+
+    public void SetValues(float healthAmount, float infectionAmount)
+    {
+        currentHealth = healthAmount;
+        currentInfection = infectionAmount;
+        UpdateHealthBar();
+        UpdatePestBar();
     }
 }

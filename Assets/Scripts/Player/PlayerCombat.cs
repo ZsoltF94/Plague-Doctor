@@ -38,6 +38,12 @@ public class PlayerCombat : MonoBehaviour
         inputActions.Player.Attack.performed += OnAttack;
     }
 
+    public void OnDisable()
+    {
+        inputActions.Player.Attack.performed -= OnAttack;
+        inputActions.Disable();
+    }
+
     private void OnAttack(InputAction.CallbackContext ctx)
     {
         Attack();

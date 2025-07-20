@@ -485,7 +485,7 @@ MonoBehaviour:
   reachPlayerDistace: 0.75
   infectDistance: 2
   stateChangeDistance: 5
-  damageCooldown: 1
+  damageCooldown: 0.5
   damageAmount: 10
   infectionCooldown: 0.1
   infectAmount: 0.005
