@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90e2fa4206f807646b0bab720fbdb761, type: 3}
+  m_Name: DirectionManDialog
+  m_EditorClassIdentifier: 
+  dialog:
+  - 'I hath heard the king lieth stricken with illness, and one must needs tend to
+    him. [SPACE to continue...]'
+  - "Oh, \u2019tis you?! Mercy, I\u2019m glad I\u2019m not in thy place! [SPACE to
+    continue...]"
+  - 'Thou may''st reach the castle if thou followest the path unto the west. [SPACE
+    to continue...]'
+  - 'Yet beware, for thou must needs pass through the Plaguewood. We so name it,
+    for naught is safe therein. [SPACE to continue...]'
+  - 'Yon place is as a labyrinth, and foul rats skulk in every shadow. [SPACE to
+    continue...]'
+  - 'One last thought...At the ponds, you canst find leeches. Use them if ever the
+    plague doth touch thee. [SPACE to continue---]'
+  - 'Go with care, and fortune favor thee! [SPACE to continue...]'

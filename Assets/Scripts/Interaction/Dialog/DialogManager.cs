@@ -11,9 +11,13 @@ public class DialogManager : MonoBehaviour
     [Header("UI References")]
     [SerializeField] private GameObject dialogPanel;
     [SerializeField] private TMP_Text dialogText;
+    [SerializeField] PlayerMovement player;
 
+
+    
     private Queue<string> dialogLines = new Queue<string>(); // for dialog lines
     private bool isDialogActive = false;
+
 
     void Awake()
     {
@@ -28,7 +32,7 @@ public class DialogManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isDialogActive && Keyboard.current.spaceKey.wasPressedThisFrame)
+        if (isDialogActive && Input.GetKeyUp(KeyCode.Space))
         {
             ShowNextLine();
         }
@@ -48,6 +52,7 @@ public class DialogManager : MonoBehaviour
 
         dialogPanel.SetActive(true);
         isDialogActive = true;
+        player.canMove = false;
         ShowNextLine();
     }
 
@@ -68,6 +73,7 @@ public class DialogManager : MonoBehaviour
     {
         // turn off panel
         isDialogActive = false;
+        player.canMove = true;
         dialogPanel.SetActive(false);
     }
 }

@@ -1,4 +1,4 @@
-using UnityEditor.Callbacks;
+
 using UnityEngine;
 
 public class EnemyAI : MonoBehaviour
@@ -64,18 +64,26 @@ public class EnemyAI : MonoBehaviour
 
         // move to patrolPoint
         rb.linearVelocity = patrolSpeed * direction;
+        // rotate in move direction
+        if (direction.sqrMagnitude > .001f)
+        {
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.Euler(0f, 0f, angle + 90);
+        }
 
         // if reached a patrolPoint, target the next one in patrolPoints[]
-        if (Vector2.Distance(transform.position, targetPoint.position) <= reachPPointDistace)
-        {
-            currentPatrolIndex = Random.Range(0, patrolPoints.Length);
-        }
+            if (Vector2.Distance(transform.position, targetPoint.position) <= reachPPointDistace)
+            {
+                currentPatrolIndex = Random.Range(0, patrolPoints.Length);
+            }
 
         // if player is near, switch state
         float distanceToPlayer = Vector2.Distance(transform.position, player.position);
         if (distanceToPlayer < stateChangeDistance)
         {
+            transform.rotation = Quaternion.identity; // rotation to zero
             currentState = State.Follow;
+            
         }
 
 
@@ -87,6 +95,12 @@ public class EnemyAI : MonoBehaviour
         Vector2 direction = (player.position - transform.position).normalized;
         // move to player
         rb.linearVelocity = patrolSpeed * direction;
+        // rotate in move direction
+        if (direction.sqrMagnitude > .001f)
+        {
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.Euler(0f, 0f, angle + 90);
+        }
 
         // stop if reached player
         if (Vector2.Distance(transform.position, player.position) <= reachPlayerDistace)
@@ -101,7 +115,9 @@ public class EnemyAI : MonoBehaviour
         float distanceToPlayer = Vector2.Distance(transform.position, player.position);
         if (distanceToPlayer >= stateChangeDistance)
         {
+            transform.rotation = Quaternion.identity; // rotation to zero
             currentState = State.Patrol;
+            
 
         }
 

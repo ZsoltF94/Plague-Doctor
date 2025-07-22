@@ -42,11 +42,23 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: TileMap
+    uniqueID: 4268336525
+    locked: 0
+  - name: HomeHouse
+    uniqueID: 298243015
+    locked: 0
   - name: Enemy
     uniqueID: 332735575
     locked: 0
+  - name: BaumStamm
+    uniqueID: 1124105299
+    locked: 0
   - name: Player
     uniqueID: 3791565579
+    locked: 0
+  - name: BaumKrone
+    uniqueID: 1854358515
     locked: 0
   m_RenderingLayers:
   - Default

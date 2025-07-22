@@ -14,6 +14,7 @@ public class Door : MonoBehaviour, IInteractable
 
         GameState.savedHealth = player.GetCurrentHealth();
         GameState.savedInfection = player.GetCurrentInfection();
+        GameState.savedBlutegel = player.GetCurrentBlutegel();
         GameState.spawnPosition = newSpawnPosition;
 
         // load new scene

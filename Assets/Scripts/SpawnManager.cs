@@ -14,7 +14,7 @@ public class SpawnManager : MonoBehaviour
 
         if (ph != null)
         {
-            ph.SetValues(GameState.savedHealth, GameState.savedInfection);
+            ph.SetValues(GameState.savedHealth, GameState.savedInfection, GameState.savedBlutegel);
         }
     }
 }

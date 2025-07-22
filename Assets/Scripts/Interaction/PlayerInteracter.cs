@@ -1,68 +1,58 @@
-using UnityEditor;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerInteracter : MonoBehaviour
 {
-    private IInteractable currentTarget;
+    [SerializeField] GameObject interactPanel;
+    [SerializeField] GameObject interactSquare;
+    [SerializeField] Vector2 boxSize = new Vector2(1.5f, 1.5f);
+
+    [SerializeField] LayerMask interactableLayer;
+
+    private Coroutine showRoutine;
 
     void Awake()
     {
 
     }
 
-
     void Update()
     {
-        // check every frame for interactables
-        CastRayToMouse();
-
-        // if E was pressed
-        if (Keyboard.current.eKey.wasPressedThisFrame && currentTarget != null)
+        if (Input.GetKeyDown(KeyCode.E))
         {
-            Debug.Log("Key E pressed");
-            currentTarget.Interact();
-            currentTarget = null;
+            Vector3 center = transform.position;
+
+            CheckInteractables(center);
         }
+
+        CheckForInteractables();
     }
 
 
-    // check if player in front of an interactable
-    // if so, set that interactable to currentTarget
-    public void CastRayToMouse()
+    void CheckInteractables(Vector3 position)
     {
+        Collider2D[] hits = Physics2D.OverlapBoxAll(position, boxSize, 0f, interactableLayer);
 
-        // if mouse or camera not activ, return
-
-        if (Mouse.current == null || Camera.current == null) return;
-
-
-        // get mouse direction
-        Vector3 mouseDir = (Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()) - transform.position).normalized;
-        mouseDir.z = 0;
-
-        // cast ray and 
-        // only check object on Interactable layer
-        int layerMask = LayerMask.GetMask("Interactable");
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, mouseDir, 5f, layerMask);
-        // Debug.DrawRay(transform.position, mouseDir * 5f, Color.red);
-
-
-
-        // if ray hits an interactable, set that to currentTarget
-        if (hit.collider != null)
+        foreach (var hit in hits)
         {
-            IInteractable interactable = hit.collider.gameObject.GetComponent<IInteractable>();
-            currentTarget = interactable;
-
+            var interactable = hit.GetComponent<IInteractable>();
+            if (interactable != null)
+            {
+                interactable.Interact();
+                break;
+            }
         }
-        else currentTarget = null;
+    }
 
-        if (currentTarget != null)
+    public void CheckForInteractables()
+    {
+        Collider2D[] hits = Physics2D.OverlapBoxAll(interactSquare.transform.position, interactSquare.transform.localScale, 0f, interactableLayer);
+        if (hits.Length > 0)
         {
-            Debug.Log("target found");
+            interactPanel.SetActive(true);
         }
-        else Debug.Log("nothing is here");
+        else interactPanel.SetActive(false);
     }
 
 

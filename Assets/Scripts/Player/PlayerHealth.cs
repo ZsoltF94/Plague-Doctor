@@ -1,4 +1,7 @@
+using System.Data.Common;
+using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
@@ -10,6 +13,8 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] float healthRegainCooldown = 0.01f;
     [SerializeField] float currentHealth;
     float lastRegainTime;
+    [SerializeField] int currentBlutegel;
+    [SerializeField] TextMeshProUGUI blutegelText;
 
     [Header("Ibfection")]
     [SerializeField] Slider pestBar;
@@ -18,7 +23,7 @@ public class PlayerHealth : MonoBehaviour
 
 
 
-    bool isDead;
+
 
 
 
@@ -27,10 +32,12 @@ public class PlayerHealth : MonoBehaviour
     void Start()
     {
         currentHealth = maxHealth;
-        currentInfection = 0;
+        currentInfection = 0f;
         UpdateHealthBar();
         UpdatePestBar();
-        isDead = false;
+        UpdateBlutegelText();
+ 
+        currentBlutegel = 0;
 
         // regain health
         lastRegainTime = -Mathf.Infinity;
@@ -41,6 +48,11 @@ public class PlayerHealth : MonoBehaviour
     void Update()
     {
         RegainHealth();
+
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            UseBlutegel();
+        }
     }
 
 
@@ -107,7 +119,7 @@ public class PlayerHealth : MonoBehaviour
     // die
     public void Die()
     {
-        isDead = true;
+
         Debug.Log("You Died.");
     }
 
@@ -122,11 +134,39 @@ public class PlayerHealth : MonoBehaviour
         return currentInfection;
     }
 
-    public void SetValues(float healthAmount, float infectionAmount)
+    public void SetValues(float healthAmount, float infectionAmount, int blutegel)
     {
         currentHealth = healthAmount;
         currentInfection = infectionAmount;
+        currentBlutegel = blutegel;
         UpdateHealthBar();
         UpdatePestBar();
+        UpdateBlutegelText();
+    }
+
+    public void AddBlutegel()
+    {
+        currentBlutegel++;
+        UpdateBlutegelText();
+    }
+    public int GetCurrentBlutegel()
+    {
+        return currentBlutegel;
+    }
+
+    public void UseBlutegel()
+    {
+        if (currentBlutegel > 0)
+        {
+            currentBlutegel--;
+            currentInfection -= 20f;
+            UpdatePestBar();
+            UpdateBlutegelText();
+        }
+    }
+
+    public void UpdateBlutegelText()
+    {
+        blutegelText.text = $"X{currentBlutegel} use[F]";
     }
 }

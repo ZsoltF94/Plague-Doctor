@@ -61,7 +61,7 @@ public class PlayerCombat : MonoBehaviour
         attackHitBoxScript.SetDamageAmount(attackValue);
 
         // set hitbox position to mouse
-        Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+        Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mouseWorldPosition.z = 0;
         Vector2 direction = (mouseWorldPosition - transform.position).normalized;
         attackHitBox.transform.localPosition = direction * 0.7f;
@@ -87,7 +87,7 @@ public class PlayerCombat : MonoBehaviour
     public void UpdateAnimation()
     {
         // get mouse posiotion
-        Vector3 mouseWorldPosition = (Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue())) - transform.position;
+        Vector3 mouseWorldPosition = (Camera.main.ScreenToWorldPoint(Input.mousePosition)) - transform.position;
         mouseWorldPosition.z = 0;
 
         animator.SetFloat("MoveX", mouseWorldPosition.x);

@@ -7,6 +7,7 @@ public static class GameState
 
     public static float savedHealth = 500f;
     public static float savedInfection = 0f;
+    public static int savedBlutegel = 0;
 
     // SpawnPos
     public static Vector3 spawnPosition = Vector3.zero;

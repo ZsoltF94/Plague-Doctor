@@ -8,6 +8,8 @@ public class PlayerMovement : MonoBehaviour
     public Vector2 lastMoveDirection { get; private set; } = Vector2.down;
     Rigidbody2D rb;
 
+    public bool canMove = true;
+
 
     [SerializeField] float maxSpeed = 5f;
     [SerializeField] float acceleration = 5f;
@@ -30,7 +32,10 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        Move();
+        if (canMove)
+        {
+            Move();
+        }
     }
 
 

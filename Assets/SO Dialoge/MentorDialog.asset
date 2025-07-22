@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: MentorDialog
   m_EditorClassIdentifier: 
   dialog:
-  - "Der K\xF6nig ist krank und muss geheilt werden."
-  - "Ich \xB4bin leider schon zu alt um den Auftrag zu erledigen und den Weg auf
-    mich zu nehmen."
-  - "Erledige du das f\xFCr mich."
+  - 'A messenger brought me word. The king is grievously ill and must needs be healed.
+    [SPACE to continue...]'
+  - 'Alas, I am too old to take on the task and walk the path myself. [SPACE to continue...]'
+  - 'Thou must do this in my stead. [SPACE to continue...]'
+  - "Make thy way to the king\u2019s castle and heal him. [SPACE to continue...]"
+  - 'Now go, young healer, and take heed upon thy journey. [SPACE to continue...]'

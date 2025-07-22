@@ -13,8 +13,11 @@ MonoBehaviour:
   m_Name: SadManDialog
   m_EditorClassIdentifier: 
   dialog:
-  - My dear daughter got infected and I had to let her go...
-  - In order to save our small village from the plage, all infected people were irdered
-    to leave the village.
-  - Now my daughter is out there and nobody is there to help.
-  - Oh I should have hidden her... I cant live without her...
+  - 'Mine own dear daughter caught the plague, and I was forced to let her go...
+    [SPACE to continue...]'
+  - 'To save our humble village from the sickness, all who were taken ill were bid
+    to leave. [SPACE to continue...]'
+  - 'Now my daughter wanders out yonder, and none be there to aid her. [SPACE to
+    continue...]'
+  - 'Oh, I shouldst have hidden her... I cannot bear this life without her... [SPACE
+    to continue...]'

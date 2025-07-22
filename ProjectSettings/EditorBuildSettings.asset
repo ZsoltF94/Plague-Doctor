@@ -6,11 +6,23 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/HomeTown.unity
+    path: Assets/Scenes/-1 MainMenu.unity
+    guid: 7ab52f33f69148e49882f6b864b7c151
+  - enabled: 1
+    path: Assets/Scenes/00 HomeTown_House.unity
+    guid: bdcec7f96b6519041a9f120bb0eb5fd5
+  - enabled: 1
+    path: Assets/Scenes/01 HomeTown.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
   - enabled: 1
-    path: Assets/Scenes/HomeTown_House.unity
-    guid: bdcec7f96b6519041a9f120bb0eb5fd5
+    path: Assets/Scenes/02 PlagueForest.unity
+    guid: 784364e806ee34d45a49e13e973e8fb2
+  - enabled: 1
+    path: Assets/Scenes/03 KingsCastle.unity
+    guid: 231f52b1f4278bc44a1010ca53357a8c
+  - enabled: 1
+    path: Assets/Scenes/04 EndScene.unity
+    guid: 0e43a4f47458cc44797fd5c722e14976
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0
