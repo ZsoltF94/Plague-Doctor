@@ -1,6 +1,5 @@
 # Plague Doctor 
-This game was a submission for Abyssal's Pixel Game Jame #12.
-​Rated #1. https://itch.io/jam/abyssals-pixel-game-jam-12
+This game was a #1 rated submission for Abyssal's Pixel Game Jame #12. https://itch.io/jam/abyssals-pixel-game-jam-12
 
 **Plague Doctor** is a dark 2D top-down action RPG set during the plague era. You play as a masked doctor on a quest to reach the infected king. Navigate through a disease-ridden city filled with hostile rats, sick citizens, and environmental dangers — all while managing your own health and infection.
 Play it here: [Plague Doctor](https://fsf-gaming-studio.itch.io/plague-doctor)
@@ -69,8 +68,4 @@ Play it here: [Plague Doctor](https://fsf-gaming-studio.itch.io/plague-doctor)
 ### UI
 - `MainMenu.cs` – Controls the title screen and menu navigation
 - `YSorter.cs` – Sorts sprites by Y-axis position for depth layering
-
-## Project Status
-
-This is a working prototype developed during a 48-hour GameJam. The goal was to create a playable demo with complete core mechanics.
 
